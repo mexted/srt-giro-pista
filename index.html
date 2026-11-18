@@ -71,10 +71,11 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
 .form .row2{display:flex;gap:8px;max-width:420px;margin:0 auto}
 .form input:not([type=checkbox]){width:100%;max-width:420px;margin:6px auto 0;display:block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 12px;color:#fff;font:600 15px var(--body);-webkit-user-select:text;user-select:text}
 .form input.bad{border-color:#ff5a6a}
+.form .ck.bad span{color:#ff9aa4}.form .ck.bad input{outline:2px solid #ff5a6a;outline-offset:1px;border-radius:3px}
 .form .ck{display:flex;gap:8px;align-items:flex-start;text-align:left;max-width:420px;margin:8px auto 0;font:500 11.5px/1.35 var(--body);color:#c9cce0}
 .form .ck input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:#6d5bff}
 .form .ck a,#welcome a{color:#b4abff}
-.form .note{font-size:11px;color:#8a8fa6;margin:6px 0 0}
+.form .note{font-size:11px;color:#8a8fa6;margin:6px 0 0}.form .note.credit{font-size:9.5px;margin-top:3px}.form .note.credit a{color:#8a8fa6}
 .form .hi{font-size:16px;margin:4px 0}
 #privacy{background:rgba(5,6,13,.85);display:none;z-index:15}
 #privacy.on{display:flex}
@@ -141,6 +142,7 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
     <div id="welcome" hidden><p class="hi">Bentornato <b id="hiName"></b>!</p><a href="#" id="notme">Non sei tu? Iscriviti di nuovo</a></div>
     <button id="go">INIZIA</button>
     <p class="note">In classifica compare solo nome e iniziale del cognome.</p>
+    <p class="note credit">Modello 3D: <a href="https://sketchfab.com/3d-models/aprilia-rs660-a4f255b6d53e46769f72f995a68bbc25" target="_blank" rel="noopener">"Aprilia RS660"</a> di ejsnowy, licenza <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, semplificato per il telefono.</p>
   </div></div></div>
 
 <div id="privacy" class="screen"><div class="box">
