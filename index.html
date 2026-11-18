@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" class="reg">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
@@ -9,6 +9,7 @@
 <style>
 :root{--bg:#05060d;--ink:#f4f5f9;--muted:#9aa0b5;--violet:#6d5bff;--deep:#2b1e8f;--display:"Anton",Impact,sans-serif;--tech:"Orbitron",monospace;--body:"Inter",system-ui,sans-serif;--ui:.8;
   --sl:max(10px,env(safe-area-inset-left));--sr:max(10px,env(safe-area-inset-right));--st:max(8px,env(safe-area-inset-top));--sb:max(8px,env(safe-area-inset-bottom))}
+[hidden]{display:none!important}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--body);overflow:hidden;touch-action:none;overscroll-behavior:none}
 #stage{position:fixed;inset:0}
@@ -50,33 +51,48 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
 .toast.on{opacity:1}
 /* schermate */
 .screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:var(--st) var(--sr) var(--sb) var(--sl);z-index:10}
-#start{background:radial-gradient(ellipse at 30% 20%,rgba(109,91,255,.35),transparent 60%),linear-gradient(160deg,#05060d,#140c45);overflow:auto}
+/* iscrizione: pagina normale che scorre, così la tastiera non copre i campi (si compila meglio in verticale) */
+html.reg,html.reg body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto;touch-action:manipulation;overscroll-behavior:auto}
+#start{position:absolute;inset:auto;top:0;left:0;right:0;min-height:100%;padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:radial-gradient(ellipse at 30% 10%,rgba(109,91,255,.35),transparent 60%),linear-gradient(160deg,#05060d,#140c45)}
 #start.gone{display:none}
-.card{max-width:520px;width:100%;text-align:center}
-.card img{width:min(260px,60vw)}
-.card h1{font:400 clamp(34px,7vw,56px)/1 var(--display);text-transform:uppercase;margin:14px 0 4px}
+.card{max-width:440px;width:100%;text-align:center}
+.card img{width:min(190px,52vw)}
+.card h1{font:400 clamp(38px,11vw,54px)/1 var(--display);text-transform:uppercase;margin:10px 0 2px}
 .card .k{font:700 12px var(--tech);letter-spacing:.18em;color:#b4abff;text-transform:uppercase}
-.card p{color:#c9cce0;font-size:14px;line-height:1.45;margin:10px auto;max-width:440px}
-.card input{width:100%;max-width:320px;margin:12px auto 0;display:block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 14px;color:#fff;font:600 18px var(--body);text-align:center;-webkit-user-select:text;user-select:text}
-.card #go{margin-top:12px;background:var(--violet);color:#fff;border:0;border-radius:14px;padding:14px 34px;font:900 18px var(--tech);letter-spacing:.08em}
-.card .how{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.card .how span{background:rgba(255,255,255,.07);border-radius:10px;padding:6px 10px;font-size:12px;color:#c9cce0}
-@media (max-height:520px){
-  #start .card{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;align-items:center;text-align:left;max-width:760px}
-  #start .card img{width:min(200px,30vw)} #start .card h1{font-size:40px;margin:6px 0 0}
-  #start .card p{font-size:12px;margin:6px 0} #start .card .how{justify-content:flex-start;margin-top:6px} #start .card .how span{font-size:11px;padding:4px 8px}
-  #start .card .form{text-align:center} #start .card .lead p{display:none} #start .card .how{display:none}
-  .form input:not([type=checkbox]){padding:7px 10px;font-size:14px;margin-top:5px} .form .ck{margin-top:5px;font-size:10.5px} .card #go{margin-top:8px;padding:10px 28px}
-}
-.form .row2{display:flex;gap:8px;max-width:420px;margin:0 auto}
-.form input:not([type=checkbox]){width:100%;max-width:420px;margin:6px auto 0;display:block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 12px;color:#fff;font:600 15px var(--body);-webkit-user-select:text;user-select:text}
-.form input.bad{border-color:#ff5a6a}
-.form .ck.bad span{color:#ff9aa4}.form .ck.bad input{outline:2px solid #ff5a6a;outline-offset:1px;border-radius:3px}
-.form .ck{display:flex;gap:8px;align-items:flex-start;text-align:left;max-width:420px;margin:8px auto 0;font:500 11.5px/1.35 var(--body);color:#c9cce0}
-.form .ck input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:#6d5bff}
+.card p{color:#c9cce0;font-size:14px;line-height:1.45;margin:8px auto;max-width:440px}
+.card .how{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:10px 0 12px}
+.card .how span{background:rgba(255,255,255,.07);border-radius:10px;padding:5px 9px;font-size:12px;color:#c9cce0}
+.card .tip{display:none}
+.form .row2{display:flex;gap:8px}
+.form .row2 input{min-width:0}
+.form #f_eta{flex:0 0 32%}
+/* 16px: sotto questa misura iPhone ingrandisce la pagina quando tocchi un campo */
+.form input:not([type=checkbox]){width:100%;margin:8px 0 0;display:block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:13px 14px;color:#fff;font:600 16px var(--body);-webkit-user-select:text;user-select:text;-webkit-appearance:none;appearance:none}
+.form input::placeholder{color:rgba(255,255,255,.5)}
+.form input:focus{outline:none;border-color:#b4abff;background:rgba(109,91,255,.16)}
+.form input.bad{border-color:#ff5a6a;background:rgba(255,90,106,.12)}
+.form .ck{display:flex;gap:10px;align-items:flex-start;text-align:left;margin:12px 0 0;font:500 13px/1.4 var(--body);color:#c9cce0}
+.form .ck input{margin:1px 0 0;width:22px;height:22px;flex:none;accent-color:#6d5bff}
+.form .ck.bad span{color:#ff9aa4}.form .ck.bad input{outline:2px solid #ff5a6a;outline-offset:1px;border-radius:4px}
 .form .ck a,#welcome a{color:#b4abff}
-.form .note{font-size:11px;color:#8a8fa6;margin:6px 0 0}.form .note.credit{font-size:9.5px;margin-top:3px}.form .note.credit a{color:#8a8fa6}
-.form .hi{font-size:16px;margin:4px 0}
+#formerr{color:#ff9aa4;font:600 13.5px/1.35 var(--body);margin:12px 0 0;text-align:center}
+.card #go{display:block;width:100%;margin:14px 0 0;background:var(--violet);color:#fff;border:0;border-radius:14px;padding:16px;font:900 18px var(--tech);letter-spacing:.08em}
+.card #go:disabled{opacity:.6}
+.form .note{font-size:11.5px;color:#8a8fa6;margin:10px 0 0;text-align:center}.form .note.credit{font-size:10px;margin-top:4px}.form .note.credit a{color:#8a8fa6}
+.form .hi{font-size:17px;margin:4px 0;text-align:center}
+#welcome{text-align:center}
+/* telefono in orizzontale: logo a sinistra, modulo a destra, la pagina scorre */
+@media (orientation:landscape) and (max-height:520px){
+  #start{padding-top:max(12px,env(safe-area-inset-top))}
+  #start .card{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0 24px;align-items:start;text-align:left;max-width:820px}
+  #start .lead{position:sticky;top:12px}
+  #start .card img{width:min(170px,26vw)} #start .card h1{font-size:38px;margin:6px 0 0}
+  #start .card .lead p,#start .card .how{display:none}
+  #start .card .lead p.tip{display:block;font-size:12.5px;color:#b4abff;margin:10px 0 0}
+  .form input:not([type=checkbox]){padding:10px 12px;margin-top:6px}
+  .form .ck{margin-top:9px;font-size:12px}
+  .card #go{padding:12px}
+}
 #privacy{background:rgba(5,6,13,.85);display:none;z-index:15}
 #privacy.on{display:flex}
 #privacy .box{max-height:92vh}
@@ -100,7 +116,7 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
 #settings input[type=range]{width:100%;accent-color:#6d5bff}
 #rotate{display:none;background:var(--bg);z-index:20;text-align:center;flex-direction:column;gap:12px;font:600 16px var(--body)}
 #rotate b{font:400 34px var(--display);text-transform:uppercase}
-@media (orientation:portrait) and (pointer:coarse){#rotate{display:flex}}
+@media (orientation:portrait) and (pointer:coarse){body.playing #rotate{display:flex}}
 #loading{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:30;transition:opacity .6s}
 #loading.gone{opacity:0;pointer-events:none}
 #loading .b{width:min(300px,70vw);height:4px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden}
@@ -128,18 +144,20 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
     <div class="k">Presentazione stagione 2027</div>
     <h1>Giro pista</h1>
     <p>Guida la RS 660 sul circuito della presentazione e lascia il tuo tempo in classifica.</p>
+    <p class="tip">Più comodo: iscriviti col telefono in verticale, poi giralo per giocare.</p>
     <div class="how"><span>Telefono in orizzontale</span><span>Inclina per piegare</span><span>Pollice destro: gas</span><span>Pollice sinistro: freno</span></div>
   </div>
   <div class="form">
     <div id="reg">
-      <div class="row2"><input id="f_nome" maxlength="40" placeholder="Nome" autocomplete="given-name"><input id="f_cognome" maxlength="40" placeholder="Cognome" autocomplete="family-name"></div>
-      <div class="row2"><input id="f_tel" type="tel" maxlength="20" placeholder="Telefono" autocomplete="tel"><input id="f_eta" type="number" min="6" max="99" inputmode="numeric" placeholder="Età"></div>
-      <input id="f_email" type="email" maxlength="80" placeholder="Email" autocomplete="email">
+      <div class="row2"><input id="f_nome" maxlength="40" placeholder="Nome" autocomplete="given-name" autocapitalize="words" enterkeyhint="next"><input id="f_cognome" maxlength="40" placeholder="Cognome" autocomplete="family-name" autocapitalize="words" enterkeyhint="next"></div>
+      <div class="row2"><input id="f_tel" type="tel" inputmode="tel" maxlength="20" placeholder="Telefono" autocomplete="tel" enterkeyhint="next"><input id="f_eta" type="number" min="6" max="99" inputmode="numeric" placeholder="Età" enterkeyhint="next"></div>
+      <input id="f_email" type="email" inputmode="email" maxlength="80" placeholder="Email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done">
       <label class="ck"><input type="checkbox" id="c_priv"><span>Ho letto l'<a href="#" id="openpriv">informativa privacy</a> e acconsento al trattamento dei miei dati per partecipare al gioco e alla classifica (obbligatorio)</span></label>
       <label class="ck"><input type="checkbox" id="c_mkt"><span>Acconsento a ricevere comunicazioni su attività, gare ed eventi di SOLO Racing Team (obbligatorio per giocare)</span></label>
       <label class="ck" id="parentbox" hidden><input type="checkbox" id="c_gen"><span>Sono il genitore o tutore e acconsento per il minore (obbligatorio sotto i 14 anni)</span></label>
     </div>
     <div id="welcome" hidden><p class="hi">Bentornato <b id="hiName"></b>!</p><a href="#" id="notme">Non sei tu? Iscriviti di nuovo</a></div>
+    <p id="formerr" hidden></p>
     <button id="go">INIZIA</button>
     <p class="note">In classifica compare solo nome e iniziale del cognome.</p>
     <p class="note credit">Modello 3D: <a href="https://sketchfab.com/3d-models/aprilia-rs660-a4f255b6d53e46769f72f995a68bbc25" target="_blank" rel="noopener">"Aprilia RS660"</a> di ejsnowy, licenza <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, semplificato per il telefono.</p>
