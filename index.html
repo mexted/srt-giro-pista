@@ -65,8 +65,22 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
   #start .card{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;align-items:center;text-align:left;max-width:760px}
   #start .card img{width:min(200px,30vw)} #start .card h1{font-size:40px;margin:6px 0 0}
   #start .card p{font-size:12px;margin:6px 0} #start .card .how{justify-content:flex-start;margin-top:6px} #start .card .how span{font-size:11px;padding:4px 8px}
-  #start .card input{margin-top:0} #start .card .form{text-align:center}
+  #start .card .form{text-align:center} #start .card .lead p{display:none} #start .card .how{display:none}
+  .form input:not([type=checkbox]){padding:7px 10px;font-size:14px;margin-top:5px} .form .ck{margin-top:5px;font-size:10.5px} .card #go{margin-top:8px;padding:10px 28px}
 }
+.form .row2{display:flex;gap:8px;max-width:420px;margin:0 auto}
+.form input:not([type=checkbox]){width:100%;max-width:420px;margin:6px auto 0;display:block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 12px;color:#fff;font:600 15px var(--body);-webkit-user-select:text;user-select:text}
+.form input.bad{border-color:#ff5a6a}
+.form .ck{display:flex;gap:8px;align-items:flex-start;text-align:left;max-width:420px;margin:8px auto 0;font:500 11.5px/1.35 var(--body);color:#c9cce0}
+.form .ck input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:#6d5bff}
+.form .ck a,#welcome a{color:#b4abff}
+.form .note{font-size:11px;color:#8a8fa6;margin:6px 0 0}
+.form .hi{font-size:16px;margin:4px 0}
+#privacy{background:rgba(5,6,13,.85);display:none;z-index:15}
+#privacy.on{display:flex}
+#privacy .box{max-height:92vh}
+#privacy .txt{font:400 12.5px/1.5 var(--body);color:#d8d9e6;text-align:left;-webkit-user-select:text;user-select:text}
+#privacy .txt h3{font:700 13px var(--body);margin:12px 0 4px;color:#fff}
 #leader,#settings{background:rgba(5,6,13,.8);display:none}
 #leader.on,#settings.on{display:flex}
 .box{width:min(520px,100%);background:linear-gradient(140deg,#0a0c1a,#1e1660);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:14px 16px;max-height:100%;overflow:auto}
@@ -116,10 +130,23 @@ body.notilt #brake{left:auto;right:calc(var(--sr) + min(22vw,150px) * var(--ui) 
     <div class="how"><span>Telefono in orizzontale</span><span>Inclina per piegare</span><span>Pollice destro: gas</span><span>Pollice sinistro: freno</span></div>
   </div>
   <div class="form">
-    <input id="nick" maxlength="16" placeholder="Il tuo nome" autocomplete="nickname">
+    <div id="reg">
+      <div class="row2"><input id="f_nome" maxlength="40" placeholder="Nome" autocomplete="given-name"><input id="f_cognome" maxlength="40" placeholder="Cognome" autocomplete="family-name"></div>
+      <div class="row2"><input id="f_tel" type="tel" maxlength="20" placeholder="Telefono" autocomplete="tel"><input id="f_eta" type="number" min="6" max="99" inputmode="numeric" placeholder="Età"></div>
+      <input id="f_email" type="email" maxlength="80" placeholder="Email" autocomplete="email">
+      <label class="ck"><input type="checkbox" id="c_priv"><span>Ho letto l'<a href="#" id="openpriv">informativa privacy</a> e acconsento al trattamento dei miei dati per partecipare al gioco e alla classifica (obbligatorio)</span></label>
+      <label class="ck"><input type="checkbox" id="c_mkt"><span>Acconsento a ricevere comunicazioni su attività ed eventi di SOLO Racing Team (facoltativo)</span></label>
+      <label class="ck" id="parentbox" hidden><input type="checkbox" id="c_gen"><span>Sono il genitore o tutore e acconsento per il minore (obbligatorio sotto i 14 anni)</span></label>
+    </div>
+    <div id="welcome" hidden><p class="hi">Bentornato <b id="hiName"></b>!</p><a href="#" id="notme">Non sei tu? Iscriviti di nuovo</a></div>
     <button id="go">INIZIA</button>
-    <p style="font-size:11px;color:#8a8fa6">In classifica compare solo il nome che scrivi.</p>
-  </div>
+    <p class="note">In classifica compare solo nome e iniziale del cognome.</p>
+  </div></div></div>
+
+<div id="privacy" class="screen"><div class="box">
+  <h2>Informativa privacy</h2>
+  <div class="txt" id="privtxt"></div>
+  <div class="act"><button id="closep">Ho capito</button></div>
 </div></div>
 
 <div id="settings" class="screen"><div class="box">
